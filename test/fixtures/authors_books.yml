@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: authors_books
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  author_id  :integer
+#  book_id    :integer
+#
+# Indexes
+#
+#  index_authors_books_on_author_id  (author_id)
+#  index_authors_books_on_book_id    (book_id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+test_authors_books: {
+  author_id: 1,
+  book_id: 1
+}
