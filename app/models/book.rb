@@ -20,6 +20,8 @@
 #  index_books_on_publisher_id  (publisher_id)
 #
 class Book < ApplicationRecord
+  ISBN_THIRTEEN_FORMAT = /^(?:\d[\ |-]?){13}$/.freeze
+
   validates :title,
             :price,
             :publicated_at,
@@ -29,7 +31,7 @@ class Book < ApplicationRecord
 
   validates :isbn_thirteen,
             format: {
-              with: /^(?:\d[\ |-]?){13}$/,
+              with: ISBN_THIRTEEN_FORMAT,
               multiline: true,
               message: 'Please ensure ISBN-13 is valid'
             }
@@ -41,4 +43,11 @@ class Book < ApplicationRecord
   has_many :authors, through: :authors_books
 
   belongs_to :publisher
+
+  # Fetch Author Names
+  #
+  # @return [String]
+  def author_names
+    authors.map(&:full_name).join
+  end
 end

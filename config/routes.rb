@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope path: 'api/v1/books', module: 'api/v1', as: :v1 do
+    get ':id', to: 'books#book'
+  end
 end

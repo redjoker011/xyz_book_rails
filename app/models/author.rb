@@ -16,4 +16,11 @@ class Author < ApplicationRecord
 
   has_many :authors_books
   has_many :books, through: :authors_books
+
+  # Build Author's full_name
+  #
+  # @return [String]
+  def full_name
+    "#{first_name} #{middle_name} #{last_name}"
+  end
 end
