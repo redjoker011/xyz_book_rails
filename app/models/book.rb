@@ -48,6 +48,6 @@ class Book < ApplicationRecord
   #
   # @return [String]
   def author_names
-    authors.map(&:full_name).join
+    authors.map(&:full_name).join(",")
   end
 end
