@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # ISBN Conversion and Validation Class
+#
+# This class only use 978 as prefix for ISBN-13 Digit
 class ISBN
   # Generate ISBN-10 Format
   #
@@ -8,17 +10,15 @@ class ISBN
   #
   # @return [String] isbn
   def to_ten(isbn)
-    validate_isbn(isbn)
+    validate_isbn_string(isbn)
 
     isbn = isbn.delete('-')
-
-    # Current ISBN EAN Number Allocated are 978 and 979
-    raise InvalidISBNError if isbn =~ /^980/
+    validate_isbn_thirteen(isbn) if isbn.size == 13
 
     # get 9 digit isbn
     case isbn.size
     when 10 then isbn = isbn[0..8]
-    when 13 then isbn = isbn[/(?:^978|^290)*(.{9})\w/, 1]
+    when 13 then isbn = isbn[/(?:^978)*(.{9})\w/, 1]
     else raise Invalid10DigitISBN
     end
 
@@ -31,10 +31,10 @@ class ISBN
   #
   # @return [String] isbn
   def to_thirteen(isbn)
-    validate_isbn(isbn)
+    validate_isbn_string(isbn)
 
     isbn = isbn.delete('-')
-    raise Invalid13DigitISBN unless isbn.size == 10 || isbn.size == 13
+    validate_isbn_thirteen(isbn) if isbn.size == 13
 
     # adjust to 13 digit isbn and remove check digit
     isbn = isbn.rjust(13, '978')[/(.+)\w/, 1]
@@ -89,8 +89,15 @@ class ISBN
   # Ensure isbn param is in string format
   #
   # @return [Void]
-  def validate_isbn(isbn)
-    raise InvalidISBNError unless isbn.is_a? String
+  def validate_isbn_string(isbn)
+    raise InvalidISBNError unless isbn.is_a?(String)
+  end
+
+  # Ensure ISBN-13 param starts with 978
+  #
+  # @return [Void]
+  def validate_isbn_thirteen(isbn)
+    raise InvalidISBNError unless isbn =~ /^978/
   end
 end
 

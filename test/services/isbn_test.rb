@@ -43,4 +43,11 @@ class ISBNTest < ActiveSupport::TestCase
 
     assert_equal(expected_isbn.delete('-'), generated_isbn)
   end
+
+  def test_raise_invalid_isbn
+    invalid_isbn = '979-1-60309-038-4'
+
+    assert_raise(InvalidISBNError) { @service.to_ten(invalid_isbn) }
+    assert_raise(InvalidISBNError) { @service.to_thirteen(invalid_isbn) }
+  end
 end
