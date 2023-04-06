@@ -52,3 +52,42 @@
   ```
 
   You can access the application at `http://localhost:3000`
+
+
+# API
+
+## Available API's
+
+### `/v1/books/{:id}`
+  - Parameter
+    - id -> Valid 13 Digit ISBN
+  - Response
+    - 200 -> Success Request
+    - 400 -> Invalid ISBN
+    - 404 -> ISBN Not Found
+  - Sample
+  ```
+  > curl  "localhost:3000/api/v1/books/978-1-891830-85-3/" | jq
+  {
+    "id": 1,
+    "title": "American Elf",
+    "price": "1000.0",
+    "publisher": "Paste Magazine",
+    "authors": "Joel  HartseHannah P. Templer, Marguerite Z. Duras"
+  }
+  ```
+
+### `/v1/books/{:id}/convert-isnb`
+  - Parameter
+    - id -> Valid 13 Digit ISBN
+  - Response
+    - 200 -> Success Request
+    - 400 -> Invalid ISBN
+  - Sample
+  ```
+  ❯ curl  "localhost:3000/api/v1/books/978-1-891830-85-3/convert-isbn" | jq
+  {
+    "isbn_ten": "1-891-83085-6",
+    "isbn_thirteen": "978-1-891830-85-3"
+  }
+  ```
