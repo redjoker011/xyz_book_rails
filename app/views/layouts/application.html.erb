@@ -12,10 +12,12 @@
   </head>
 
   <body>
+    <div class="grid-x grid-padding-x">
+      <%= render 'layouts/header' %>
 
-    <%= render 'layouts/header' %>
+      <%= yield %>
 
-    <%= yield %>
-
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

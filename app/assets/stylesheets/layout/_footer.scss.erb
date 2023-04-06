@@ -1,0 +1,42 @@
+@import 'utils/variables';
+
+.page-footer {
+  .search {
+    .input {
+      border-radius: 25px;
+      border-color: $blue;
+      width: 230px;
+      padding: 20px;
+    }
+  }
+
+  .icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background-color: $light-gray;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 6px;
+
+    &.-facebook {
+      background-image: url(<%= asset_path 'facebook' %>);
+    }
+
+    &.-linkedin {
+      background-image: url(<%= asset_path 'linkedin' %>);
+    }
+
+    &.-twitter {
+      background-image: url(<%= asset_path 'Logo' %>);
+    }
+
+    &.-with-margin-right {
+      margin-right: 20px;
+    }
+
+    .image {
+      height: 20px;
+    }
+  }
+}
