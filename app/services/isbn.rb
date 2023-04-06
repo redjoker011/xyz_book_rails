@@ -13,7 +13,7 @@ class ISBN
     isbn = isbn.delete('-')
 
     # Current ISBN EAN Number Allocated are 978 and 979
-    raise InvalidISBNError if isbn =~ /^979/
+    raise InvalidISBNError if isbn =~ /^980/
 
     # get 9 digit isbn
     case isbn.size
