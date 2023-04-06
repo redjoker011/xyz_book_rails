@@ -15,7 +15,8 @@
 #
 # Indexes
 #
-#  index_books_on_publisher_id  (publisher_id)
+#  index_books_on_isbn_thirteen  (isbn_thirteen) UNIQUE
+#  index_books_on_publisher_id   (publisher_id)
 #
 
 # This model initially had no columns defined. If you add columns to the

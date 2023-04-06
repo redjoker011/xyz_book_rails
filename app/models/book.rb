@@ -17,7 +17,8 @@
 #
 # Indexes
 #
-#  index_books_on_publisher_id  (publisher_id)
+#  index_books_on_isbn_thirteen  (isbn_thirteen) UNIQUE
+#  index_books_on_publisher_id   (publisher_id)
 #
 class Book < ApplicationRecord
   ISBN_THIRTEEN_FORMAT = /^(?:\d[\ |-]?){13}$/.freeze
