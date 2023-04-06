@@ -6,8 +6,9 @@ module Api
   module V1
     # Book API Controller
     class BooksController < ActionController::API
+      before_action :initialize_isbn
       before_action :valid_isbn_format?
-      before_action :initialize_isbn, only: :convert_isbn
+      before_action :validate_isbn_thirteen
 
       # Fetch book by isbn
       # /api/v1/books/{:id}
@@ -15,7 +16,6 @@ module Api
       # @return [JSON]
       def book
         isbn = params[:id]
-
         @book = Book.find_by_isbn_thirteen(isbn)
 
         if @book
@@ -31,12 +31,11 @@ module Api
       # @return [JSON]
       def convert_isbn
         isbn_ten = @isbn_service.to_ten(params[:id])
+
         render json: {
           isbn_ten: format_isbn_ten(isbn_ten),
           isbn_thirteen: params[:id]
         }
-      rescue InvalidISBNError, Invalid13DigitISBN
-        response_invalid_format
       end
 
       private
@@ -81,6 +80,13 @@ module Api
       # @return [String] formatted isbn
       def format_isbn_ten(isbn)
         isbn.gsub(/(\d{1})(\d{3})(\d{5})(\d{1})/, '\\1-\\2-\\3-\\4')
+      end
+
+      # Validate ISBN-13
+      def validate_isbn_thirteen
+        @isbn_service.to_thirteen(params[:id])
+      rescue InvalidISBNError, Invalid13DigitISBN
+        response_invalid_format
       end
     end
   end
