@@ -10,6 +10,7 @@ module Api
       before_action :initialize_isbn, only: :convert_isbn
 
       # Fetch book by isbn
+      # /api/v1/books/{:id}
       #
       # @return [JSON]
       def book
@@ -24,6 +25,10 @@ module Api
         end
       end
 
+      # Convert ISBN 13 to ISBN 10
+      # /api/v1/books/{:id}/convert-isbn
+      #
+      # @return [JSON]
       def convert_isbn
         isbn_ten = @isbn_service.to_ten(params[:id])
         render json: {
