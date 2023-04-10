@@ -54,7 +54,15 @@
   You can access the application at `http://localhost:3000`
 
 
-# API
+# Features
+
+## Front End
+
+ - Home Page(In-complete)
+ - Able to search book by ISBN-10 and ISBN-13
+ - Able to render error message for invalid ISBN
+
+## API
 
 ## Available API's
 
