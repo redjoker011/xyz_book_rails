@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "XYZ Books" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,21 +12,29 @@
   </head>
 
   <body>
-    <div class="cell">
-      <%= render 'layouts/header' %>
-    </div>
-
-    <div class="grid-container">
+    <div class="grid-y">
       <div class="cell">
-        <%= render 'layouts/navigation' %>
+        <%= render 'layouts/header' %>
+      </div>
+
+      <div class="cell main-content">
+        <div class="grid-container">
+          <div class="cell">
+            <%= render 'layouts/navigation' %>
+          </div>
+
+          <div class="cell">
+            <%= yield %>
+          </div>
+        </div>
       </div>
 
       <div class="cell">
-        <%= yield %>
-      </div>
-
-      <div class="cell">
-        <%= render 'layouts/footer' %>
+        <div class="grid-container">
+          <div class="cell">
+            <%= render 'layouts/footer' %>
+          </div>
+        </div>
       </div>
     </div>
   </body>

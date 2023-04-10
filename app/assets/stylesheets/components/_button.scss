@@ -1,0 +1,15 @@
+@import 'utils/variables';
+
+.action-button {
+  border-radius: 12px;
+  color: $white;
+  margin: 0;
+
+  &.-contact {
+    width: 110px;
+  }
+
+  &.-start {
+    width: 210px;
+  }
+}
