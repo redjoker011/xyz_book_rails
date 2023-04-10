@@ -34,6 +34,9 @@ class ISBN
     validate_isbn_string(isbn)
 
     isbn = isbn.delete('-')
+
+    raise InvalidISBNError if isbn.size < 10 || isbn.size > 13
+
     validate_isbn_thirteen(isbn) if isbn.size == 13
 
     # adjust to 13 digit isbn and remove check digit
