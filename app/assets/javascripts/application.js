@@ -30,8 +30,12 @@ $(document).ready(function () {
     if (inputVal) {
       typingTimer = setTimeout(doneTyping(inputVal), doneTypingInterval);
     } else{
+      // display main page
       $('#main').css({ display: 'block' });
+
+      // hide result and error message
       $("#result").css({ display: 'none' });
+      $(".error").css({ display: 'none' });
     }
   });
 
@@ -41,12 +45,20 @@ $(document).ready(function () {
       url: "/books/" + inputVal,
       type: "get",
       success: function(data) {
+        // Hide error message
+        $(".error").css({ display: 'none' });
+
+        // display result
         $("#result").css({ display: 'block' });
-        $('#main').css({ display: 'none' });
         $("#result")[0].innerHTML = data.html;
+
+        // hide main page
+        $('#main').css({ display: 'none' });
       },
       error: function(err) {
-        console.log('error', err);
+        // toggle error message
+        $(".error").css({ display: 'block' });
+        $(".error").html(err.error);
       },
     });
   }
