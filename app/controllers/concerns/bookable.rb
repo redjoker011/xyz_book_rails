@@ -29,7 +29,8 @@ module Bookable
 
   # 400 HTTP Code Response
   def response_invalid_format
-    render json: { error: 'id param is not a valid ISBN-13 Digit'.to_json }, status: 400
+    @error_message = 'ISBN input is not a valid ISBN'
+    render json: { error: @error_message.to_json }, status: 400
   end
 
   # @param [String] isbn
