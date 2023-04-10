@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
     <%= csrf_meta_tags %>
   </head>
 
@@ -25,9 +26,11 @@
         </div>
       </div>
 
-      <div class="cell">
+      <div class="cell" id="main">
         <%= yield %>
       </div>
+
+      <div class="cell" id="result"></div>
 
       <div class="cell">
         <div class="grid-container">

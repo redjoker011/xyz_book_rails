@@ -11,9 +11,43 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
-//= //= require foundation
-require_tree .
+//= require foundation
+// require_tree .
 
-$(function(){ $(document).foundation(); });
+$(document).ready(function () {
+  $(function(){ $(document).foundation(); });
+  //setup before functions
+  var typingTimer;
+  var doneTypingInterval = 5000; 
+
+  $('#search').keyup(function() {
+    clearTimeout(typingTimer);
+
+    var inputVal = $('#search').val();
+    if (inputVal) {
+      typingTimer = setTimeout(doneTyping(inputVal), doneTypingInterval);
+    } else{
+      $('#main').css({ display: 'block' });
+      $("#result").css({ display: 'none' });
+    }
+  });
+
+  //user is "finished typing," do something
+  function doneTyping (inputVal) {
+    Rails.ajax({
+      url: "/books/" + inputVal,
+      type: "get",
+      success: function(data) {
+        $("#result").css({ display: 'block' });
+        $('#main').css({ display: 'none' });
+        $("#result")[0].innerHTML = data.html;
+      },
+      error: function(err) {
+        console.log('error', err);
+      },
+    });
+  }
+});
