@@ -7,7 +7,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'get book should respond not found' do
-    get '/api/v1/books/978-1-891830-85-5'
+    get '/api/v1/books/978-1-60309-454-2'
     assert_response :not_found
   end
 
