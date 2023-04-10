@@ -6,7 +6,6 @@
 #
 #  id            :integer          not null, primary key
 #  edition       :string
-#  image_url     :string
 #  isbn_thirteen :string
 #  price         :decimal(8, 2)
 #  publicated_at :date
@@ -42,6 +41,8 @@ class Book < ApplicationRecord
 
   has_many :authors_books, inverse_of: :book
   has_many :authors, through: :authors_books
+
+  has_one_attached :image
 
   belongs_to :publisher
 

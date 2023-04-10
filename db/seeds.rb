@@ -144,6 +144,11 @@ books.each do |book|
     new_book.authors_books.new(author: author)
   end
 
+  file_name = "#{new_book.title.downcase.gsub("\s", "_")}.png"
+  path = Rails.root.join('app', 'assets', 'images', file_name)
+
+  new_book.image.attach(io: File.open(path), filename: file_name) if path.exist?
+
   new_book.save!
 end
 

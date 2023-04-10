@@ -6,11 +6,11 @@
   <% if @book %>
     <div class="cell">
       <div class="grid-x">
-        <div class="cell">
-          <%= @book.title %>
+        <div class="cell small-3 cover">
+          <%= image_tag book_image(@book), class: 'image' %>
         </div>
 
-        <div class="cell">
+        <div class="cell small-4">
           <div class="h3 font-bold">
             <%= @book.title.titleize %>
           </div>

@@ -4,7 +4,6 @@
 #
 #  id            :integer          not null, primary key
 #  edition       :string
-#  image_url     :string
 #  isbn_thirteen :string
 #  price         :decimal(8, 2)
 #  publicated_at :date
