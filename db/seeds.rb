@@ -133,6 +133,7 @@ books.each do |book|
   new_book = Book.new(attributes).tap do |attr|
     attr.publisher = publisher
     attr.publicated_at = "01/01/#{book[:publication_year]}"
+    attr.isbn_thirteen = book[:isbn_thirteen].gsub('-', '')
   end
 
   # assign authors

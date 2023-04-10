@@ -17,8 +17,7 @@ module Api
       #
       # @return [JSON]
       def book
-        isbn = params[:id]
-        @book = Book.find_by_isbn_thirteen(isbn)
+        @book = Book.find_by_isbn_thirteen(@isbn)
 
         if @book
           response_success
@@ -51,13 +50,6 @@ module Api
           publisher: @book.publisher.name,
           authors: @book.author_names
         }
-      end
-
-      # @param [String] isbn
-      #
-      # @return [String] formatted isbn
-      def format_isbn_ten(isbn)
-        isbn.gsub(/(\d{1})(\d{3})(\d{5})(\d{1})/, '\\1-\\2-\\3-\\4')
       end
     end
   end

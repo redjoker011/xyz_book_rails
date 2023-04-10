@@ -1,4 +1,3 @@
-# Book Module
 module Bookable
   extend ActiveSupport::Concern
 
@@ -9,7 +8,7 @@ module Bookable
 
   # Validate ISBN-13
   def validate_isbn_thirteen
-    @isbn_service.to_thirteen(params[:id])
+    @isbn = @isbn_service.to_thirteen(params[:id])
   rescue InvalidISBNError, Invalid13DigitISBN
     response_invalid_format
   end
@@ -31,5 +30,12 @@ module Bookable
   # 400 HTTP Code Response
   def response_invalid_format
     render json: { error: 'id param is not a valid ISBN-13 Digit'.to_json }, status: 400
+  end
+
+  # @param [String] isbn
+  #
+  # @return [String] formatted isbn-10
+  def format_isbn_ten(isbn)
+    isbn.gsub(/(\d{1})(\d{3})(\d{5})(\d{1})/, '\\1-\\2-\\3-\\4')
   end
 end
