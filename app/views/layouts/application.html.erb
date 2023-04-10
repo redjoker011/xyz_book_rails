@@ -17,16 +17,16 @@
         <%= render 'layouts/header' %>
       </div>
 
-      <div class="cell main-content">
+      <div class="cell">
         <div class="grid-container">
           <div class="cell">
             <%= render 'layouts/navigation' %>
           </div>
-
-          <div class="cell">
-            <%= yield %>
-          </div>
         </div>
+      </div>
+
+      <div class="cell">
+        <%= yield %>
       </div>
 
       <div class="cell">
