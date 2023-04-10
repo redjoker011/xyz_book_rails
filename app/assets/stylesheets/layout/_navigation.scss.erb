@@ -1,0 +1,26 @@
+@import 'utils/variables';
+
+.page-nav {
+  .search {
+    .input {
+      border-radius: 25px;
+      border-color: $blue;
+      width: 230px;
+      background: url(<%= asset_path 'icon_feather_search' %>) no-repeat scroll 8px 10px;
+      background-size: 16px;
+      padding-left: 30px;
+      margin: 0;
+    }
+  }
+  .contact {
+    border-radius: 8px;
+    margin: 0;
+    width: 110px;
+  }
+
+  .lang {
+    >.icon {
+      margin-bottom: 2px;
+    }
+  }
+}

@@ -12,16 +12,20 @@
   </head>
 
   <body>
-    <div class="grid-x">
+    <div class="cell">
+      <%= render 'layouts/header' %>
+    </div>
+
+    <div class="grid-container">
       <div class="cell">
-        <%= render 'layouts/header' %>
+        <%= render 'layouts/navigation' %>
       </div>
 
-      <div class="cell content-container">
+      <div class="cell">
         <%= yield %>
       </div>
 
-      <div class="cell content-container">
+      <div class="cell">
         <%= render 'layouts/footer' %>
       </div>
     </div>
