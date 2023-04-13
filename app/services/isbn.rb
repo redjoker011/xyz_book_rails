@@ -65,7 +65,7 @@ class ISBN
   #
   # @return [String]
   def calculate_check_digit_old(isbn)
-    new_isbn = (11 - (isbn.split(//).zip((2..10).to_a.reverse).inject(0) { |s, n| s + n[0].to_i * n[1] } % 11))
+    new_isbn = (11 - (isbn.split(//).zip((2..10).to_a.reverse).inject(0) { |s, n| s + n[0].to_i * n[1] } % 11)) % 11
 
     isbn << case new_isbn
             when 10 then 'X'
