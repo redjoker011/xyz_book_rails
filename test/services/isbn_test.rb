@@ -28,6 +28,14 @@ class ISBNTest < ActiveSupport::TestCase
     assert_equal(expected_isbn.delete('-'), generated_isbn)
   end
 
+  def test_isbn_ten_to_isbn_thirteen_ending_in_11
+    isbn = '978-0-13409-341-3'
+    expected_isbn = '0-134-09341-0'
+    generated_isbn = @service.to_ten(isbn)
+
+    assert_equal(expected_isbn.delete('-'), generated_isbn)
+  end
+
   def test_isbn_thirteen_to_isbn_ten_ending_in_x
     isbn = '978-1-60309-038-4'
     expected_isbn = '1-603-09038-X'
